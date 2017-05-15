@@ -11,5 +11,5 @@ package modell;
  */
 public class Disziplin {
     public int Leistung;
-    
+
 }

@@ -10,14 +10,15 @@ package modell;
  * @author zehe.jonas
  */
 public class Schueler {
-        private String name ;
+
+    private String name;
     private String vorname;
     private int geburtsjahr;
     private char geschlecht;
     private int gesamtpunktzahl;
     private char urkunde;
-    public Schueler (String name,String vorname,int geburtsjahr,char geschlecht){
-        
-        
+
+    public Schueler(String name, String vorname, int geburtsjahr, char geschlecht) {
+
     }
 }

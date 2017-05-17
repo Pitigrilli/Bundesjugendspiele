@@ -10,5 +10,15 @@ import java.util.ArrayList;
  * @author holler.nils
  */
 public class Klasse {
-    ArrayList<Schueler> schüler = new ArrayList<Schueler>();
+    ArrayList<Schueler> schueler = new ArrayList<>();
+    public float punktedurchschnittBerechnen(){
+        float punktedurchschnitt = 0;
+        return    punktedurchschnitt;
+    }
+    public void alleSchuelerAusgeben(){
+        System.out.println(schueler.toString());
+    }
+    public void schuelerHinzufügen(Schueler s){
+        schueler.add(s);
+    }
 }

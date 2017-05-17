@@ -9,7 +9,20 @@ package modell;
  *
  * @author jelinek.loris
  */
-public class Disziplin {
-    public int Leistung;
+public abstract class Disziplin {
 
+    private int leistung;
+    private int punktzahl;
+    private Schueler schueler;
+    
+    public Disziplin(Schueler s){
+        schueler = s;
+    }
+    
+
+    abstract public int punktzahlberechnen(int Meter);
+
+    public void setLeistung(int wert) {
+        leistung = wert;
+    }
 }

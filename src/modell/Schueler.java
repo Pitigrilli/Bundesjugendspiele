@@ -13,21 +13,19 @@ import java.util.ArrayList;
 public class Schueler {
 
     private String name;
-    private String vorname;
+    private String klasse;
+
     private int geburtsjahr;
     private char geschlecht;
     private int gesamtpunktzahl;
     private char urkunde;
-ArrayList <String> Disziplin = new ArrayList<String> ();
-    public void Disziplin(){
-
-        Disziplin.add("Tauchen");
-        Disziplin.add("Freistil");
-        Disziplin.add("Rücken");
-    }
+    
+protected ArrayList <Disziplin> disziplinen = new ArrayList<> ();
 
     public Schueler() {
-
+        disziplinen.add(new Tauchen(this));
+        disziplinen.add(new Freistil(this));
+        disziplinen.add(new Rueckenschwimmen(this));
     }
 
     public String getName() {
@@ -38,12 +36,12 @@ ArrayList <String> Disziplin = new ArrayList<String> ();
         this.name = name;
     }
 
-    public String getVorname() {
-        return vorname;
+    public String getKlasse() {
+        return klasse;
     }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setKlasse(String klasse) {
+        this.klasse = klasse;
     }
 
     public int getGeburtsjahr() {
@@ -77,4 +75,10 @@ ArrayList <String> Disziplin = new ArrayList<String> ();
     public void setUrkunde(char urkunde) {
         this.urkunde = urkunde;
     }
+
+    public ArrayList<Disziplin> getDisziplinen() {
+        return disziplinen;
+    }
+    
+    
 }

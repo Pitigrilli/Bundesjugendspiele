@@ -5,24 +5,35 @@
  */
 package modell;
 
+import java.util.*;
+
 /**
  *
  * @author jelinek.loris
  */
 public abstract class Disziplin {
 
-    private int leistung;
-    private int punktzahl;
-    private Schueler schueler;
-    
-    public Disziplin(Schueler s){
+    protected int leistung;
+    public int punktzahl;
+    protected Schueler schueler;
+    protected int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));
+
+    public Disziplin(Schueler s) {
         schueler = s;
     }
-    
 
-    abstract public int punktzahlberechnen(int Meter);
+    abstract public int punktzahlberechnen();
 
     public void setLeistung(int wert) {
         leistung = wert;
     }
+
+    public int getLeistung() {
+        return leistung;
+    }
+
+    public Schueler getSchueler() {
+        return schueler;
+    }
+
 }

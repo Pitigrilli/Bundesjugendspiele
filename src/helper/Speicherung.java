@@ -13,14 +13,56 @@ import java.io.Serializable;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 public class Speicherung {
+    String filename = "storage.txt";
+    ArrayList<modell.Schueler> list;
+    ArrayList<modell.Schueler> listeAusDatei;
     
+    public void listeInDateiSchreiben(ArrayList<modell.Schueler> schuelerliste){
+        FileOutputStream fos;
+        ObjectOutputStream out;
+        list = schuelerliste;
+        
+        try{
+            fos = new FileOutputStream(filename);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(list);
+            out.close();
+            System.out.println("Objekte gespeichert");
+            
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
     
-    public void listeInDateiSchreiben(){
+    public void listeAusDateiLesen(){
+        FileInputStream fis;
+        ObjectInputStream in;
         
-        
+        try{
+            
+            fis = new FileInputStream(filename);
+            in = new ObjectInputStream(fis);
+            listeAusDatei = (ArrayList) in.readObject();
+            in.close();
+            
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        System.out.println("Objekte wiederhergestellt");
+    }
+    
+    public ArrayList<modell.Schueler> gibListe(){
+        listeAusDateiLesen();
+        return listeAusDatei;
     }
     
     

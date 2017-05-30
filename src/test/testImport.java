@@ -24,9 +24,9 @@ public class testImport {
             helper.Import test = new helper.Import(chooser.getSelectedFile());
             ArrayList<modell.Schueler> schuelerliste = test.gibListe();
 
-            for (modell.Schueler schueler : schuelerliste) {
-                System.out.println(schueler.getKlasse() + schueler.getName() + schueler.getGeschlecht() + schueler.getGeburtsjahr());
-            }
+            helper.Speicherung speicherung = new helper.Speicherung();
+            speicherung.listeInDateiSchreiben(schuelerliste);
+            
         }
 
     }

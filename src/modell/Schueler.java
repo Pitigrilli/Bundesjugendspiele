@@ -9,8 +9,9 @@ package modell;
  *
  * @author zehe.jonas
  */
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Schueler {
+public class Schueler implements Serializable {
 
     private String name;
     private String klasse;

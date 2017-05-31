@@ -26,7 +26,7 @@ public class testImport {
 
             helper.Speicherung speicherung = new helper.Speicherung();
             speicherung.listeInDateiSchreiben(schuelerliste);
-            
+
         }
 
     }

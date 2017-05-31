@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package modell;
+
 import java.io.Serializable;
+
 /**
  *
  * @author weir.clair
  */
-public class Rueckenschwimmen extends Disziplin implements Serializable{
+public class Rueckenschwimmen extends Disziplin implements Serializable {
 
     public Rueckenschwimmen(Schueler s) {
         super(s);
@@ -177,11 +179,11 @@ public class Rueckenschwimmen extends Disziplin implements Serializable{
                                         return punktzahl;
                                     }
                                 }
-                                return punktzahl;
+
                         }
-                        return punktzahl;
+
                 }
-                return punktzahl;
+
         }
         return punktzahl;
     }

@@ -13,7 +13,8 @@ import modell.Schueler;
  * @author kamolz.philipp
  */
 public class testFreistil {
-   public static void main(String[] args) {
+
+    public static void main(String[] args) {
         ArrayList<modell.Schueler> schueler = new ArrayList<>();
         for (int i = 120; i < 0; i--) {
             modell.Schueler neuerSchueler = new modell.Schueler();
@@ -26,5 +27,5 @@ public class testFreistil {
         for (Schueler schueler1 : schueler) {
             System.out.println(schueler1.getDisziplinen().get(3).punktzahlberechnen());
         }
-    } 
+    }
 }

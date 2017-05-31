@@ -18,5 +18,5 @@ public class BJS {
         // TODO code application logic here
         System.out.println("Hello, Netbeans!");
     }
-    
+
 }

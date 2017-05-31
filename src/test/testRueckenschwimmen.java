@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package test;
+
 import java.util.ArrayList;
 import modell.Schueler;
+
 /**
  *
  * @author kamolz.philipp
@@ -14,7 +16,7 @@ public class testRueckenschwimmen {
 
     public static void main(String[] args) {
         ArrayList<modell.Schueler> schueler = new ArrayList<>();
-        for (int i = 120; i < 0; i--) {
+        for (int i = 120; i > 0; i--) {
             modell.Schueler neuerSchueler = new modell.Schueler();
             neuerSchueler.setGeburtsjahr(2007);
             neuerSchueler.setGeschlecht('m');

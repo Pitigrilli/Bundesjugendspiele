@@ -13,9 +13,10 @@ import modell.Schueler;
  * @author holler.nils
  */
 public class testTauchen {
-    public static void main(String[] args){ 
+
+    public static void main(String[] args) {
         ArrayList<modell.Schueler> schueler = new ArrayList<>();
-        for(int i=3; i<20; i++){
+        for (int i = 3; i < 20; i++) {
             modell.Schueler neuerSchueler = new modell.Schueler();
             neuerSchueler.setGeburtsjahr(2007);
             neuerSchueler.setGeschlecht('m');
@@ -23,9 +24,8 @@ public class testTauchen {
             schueler.add(neuerSchueler);
         }
 
-        
         for (Schueler schueler1 : schueler) {
             System.out.println(schueler1.getDisziplinen().get(0).punktzahlberechnen());
-        }  
+        }
     }
 }

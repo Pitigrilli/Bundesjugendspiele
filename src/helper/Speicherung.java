@@ -16,54 +16,51 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+
 public class Speicherung {
+
     String filename = "storage.txt";
     ArrayList<modell.Schueler> list;
     ArrayList<modell.Schueler> listeAusDatei;
-    
-    public void listeInDateiSchreiben(ArrayList<modell.Schueler> schuelerliste){
+
+    public void listeInDateiSchreiben(ArrayList<modell.Schueler> schuelerliste) {
         FileOutputStream fos;
         ObjectOutputStream out;
         list = schuelerliste;
-        
-        try{
+
+        try {
             fos = new FileOutputStream(filename);
             out = new ObjectOutputStream(fos);
             out.writeObject(list);
             out.close();
             System.out.println("Objekte gespeichert");
-            
-        }
-        catch(IOException ex){
+
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
-    public void listeAusDateiLesen(){
+
+    public void listeAusDateiLesen() {
         FileInputStream fis;
         ObjectInputStream in;
-        
-        try{
-            
+
+        try {
+
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            listeAusDatei = (ArrayList) in.readObject();
+            listeAusDatei = (ArrayList<modell.Schueler>) in.readObject();
             in.close();
-            
-        }
-        catch(IOException ex){
+            System.out.println("Objekte wiederhergestellt");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        catch(ClassNotFoundException ex){
-            ex.printStackTrace();
-        }
-        System.out.println("Objekte wiederhergestellt");
     }
-    
-    public ArrayList<modell.Schueler> gibListe(){
+
+    public ArrayList<modell.Schueler> gibListe() {
         listeAusDateiLesen();
         return listeAusDatei;
     }
-    
-    
+
 }

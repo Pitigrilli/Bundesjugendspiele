@@ -11,6 +11,7 @@ package modell;
  */
 import java.io.Serializable;
 import java.util.ArrayList;
+
 public class Schueler implements Serializable {
 
     private String name;
@@ -20,8 +21,8 @@ public class Schueler implements Serializable {
     private char geschlecht;
     private int gesamtpunktzahl;
     private char urkunde;
-    
-protected ArrayList <Disziplin> disziplinen = new ArrayList<> ();
+
+    protected ArrayList<Disziplin> disziplinen = new ArrayList<>();
 
     public Schueler() {
         disziplinen.add(new Tauchen(this));
@@ -80,6 +81,5 @@ protected ArrayList <Disziplin> disziplinen = new ArrayList<> ();
     public ArrayList<Disziplin> getDisziplinen() {
         return disziplinen;
     }
-    
-    
+
 }

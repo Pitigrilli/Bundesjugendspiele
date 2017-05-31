@@ -4,21 +4,27 @@
  * and open the template in the editor.
  */
 package modell;
+
 import java.util.ArrayList;
+
 /**
  *
  * @author holler.nils
  */
 public class Klasse {
+
     ArrayList<Schueler> schueler = new ArrayList<>();
-    public float punktedurchschnittBerechnen(){
+
+    public float punktedurchschnittBerechnen() {
         float punktedurchschnitt = 0;
-        return    punktedurchschnitt;
+        return punktedurchschnitt;
     }
-    public void alleSchuelerAusgeben(){
+
+    public void alleSchuelerAusgeben() {
         System.out.println(schueler.toString());
     }
-    public void schuelerHinzufügen(Schueler s){
+
+    public void schuelerHinzufügen(Schueler s) {
         schueler.add(s);
     }
 }

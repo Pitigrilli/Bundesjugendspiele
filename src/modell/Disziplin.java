@@ -5,13 +5,14 @@
  */
 package modell;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author jelinek.loris
  */
-public abstract class Disziplin {
+public abstract class Disziplin implements Serializable {
 
     protected int leistung;
     public int punktzahl;

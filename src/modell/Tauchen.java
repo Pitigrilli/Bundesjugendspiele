@@ -15,7 +15,8 @@ public class Tauchen extends Disziplin implements Serializable {
     @Override
     public int punktzahlberechnen() {
         char geschlecht = schueler.getGeschlecht();
-        int alter = aktuellesJahr - schueler.getGeburtsjahr();
+        int alter;
+        alter = schueler.getAlter();
         switch (geschlecht) {
             case 'm':
                 switch (alter) {

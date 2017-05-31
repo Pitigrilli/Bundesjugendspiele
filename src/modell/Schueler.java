@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modell;
 
 /**
@@ -11,20 +6,19 @@ package modell;
  */
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Schueler implements Serializable {
 
     private String name;
     private String klasse;
-
     private int geburtsjahr;
     private char geschlecht;
-    private int gesamtpunktzahl;
-    private char urkunde;
-
-    protected ArrayList<Disziplin> disziplinen = new ArrayList<>();
+    protected ArrayList<Disziplin> disziplinen;
 
     public Schueler() {
+        disziplinen = new ArrayList<>();
         disziplinen.add(new Tauchen(this));
         disziplinen.add(new Freistil(this));
         disziplinen.add(new Rueckenschwimmen(this));
@@ -49,6 +43,11 @@ public class Schueler implements Serializable {
     public int getGeburtsjahr() {
         return geburtsjahr;
     }
+    
+    public int getAlter(){
+        int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));
+        return aktuellesJahr - geburtsjahr;
+    }
 
     public void setGeburtsjahr(int geburtsjahr) {
         this.geburtsjahr = geburtsjahr;
@@ -63,19 +62,17 @@ public class Schueler implements Serializable {
     }
 
     public int getGesamtpunktzahl() {
+        int gesamtpunktzahl = 0;
+        for (Disziplin d : disziplinen) {
+            gesamtpunktzahl += d.punktzahlberechnen();
+        }
         return gesamtpunktzahl;
     }
 
-    public void setGesamtpunktzahl(int gesamtpunktzahl) {
-        this.gesamtpunktzahl = gesamtpunktzahl;
-    }
-
     public char getUrkunde() {
+        char urkunde;
+        urkunde = ' ';
         return urkunde;
-    }
-
-    public void setUrkunde(char urkunde) {
-        this.urkunde = urkunde;
     }
 
     public ArrayList<Disziplin> getDisziplinen() {

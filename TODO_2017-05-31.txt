@@ -1,0 +1,24 @@
+Klasse:
+public float punktedurchschnittBerechnen() implementieren
+
+Schueler:
+Konstruktor mit den Grunddaten aus ASV
+char getUrkunde() Rückgabewert aus gesamtpunktzahl berechnen
+setter-Methoden für die Grunddaten entfernen
+name, klasse, geburtsdatum, geschlecht auf final
+
+Disziplin:
+setLeistung(int) Parameter ändern zu setLeistung(String) und Methode abstract
+machen. in Unterklassen überschreiben.
+
+Freistil:
+setLeistung(String): Aus "1:21" den Wert berechnen für leistung als int
+punktzahlberechnen überprüfen!!
+
+Tauchen:
+setLeistung(String): Aus "1:21" den Wert berechnen für leistung als int
+
+Rückenschwimmen:
+setLeistung(String): Aus "1:21" den Wert berechnen für leistung als int
+punktzahlberechnen überprüfen!!
+

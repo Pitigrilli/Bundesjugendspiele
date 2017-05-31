@@ -15,9 +15,8 @@ import java.util.*;
 public abstract class Disziplin implements Serializable {
 
     protected int leistung;
-    public int punktzahl;
+    protected int punktzahl;
     protected Schueler schueler;
-    protected int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));
 
     public Disziplin(Schueler s) {
         schueler = s;
@@ -28,8 +27,8 @@ public abstract class Disziplin implements Serializable {
     public void setLeistung(int wert) {
         leistung = wert;
     }
-
-    public int getLeistung() {
+    
+    public int getLeistung(){
         return leistung;
     }
 

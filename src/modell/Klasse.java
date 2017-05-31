@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modell;
 
 import java.util.ArrayList;
@@ -13,18 +8,29 @@ import java.util.ArrayList;
  */
 public class Klasse {
 
-    ArrayList<Schueler> schueler = new ArrayList<>();
+    private final ArrayList<Schueler> schueler;
+
+    public Klasse() {
+        this.schueler = new ArrayList<>();
+    }
+
+    /**
+     * @return the schueler
+     */
+    public ArrayList<Schueler> getSchueler() {
+        return schueler;
+    }
 
     public float punktedurchschnittBerechnen() {
         float punktedurchschnitt = 0;
         return punktedurchschnitt;
     }
 
-    public void alleSchuelerAusgeben() {
-        System.out.println(schueler.toString());
+    public void alleSchuelerConsoleAusgeben() {
+        System.out.println(getSchueler().toString());
     }
 
     public void schuelerHinzufügen(Schueler s) {
-        schueler.add(s);
+        getSchueler().add(s);
     }
 }

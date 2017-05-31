@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modell;
 
 import java.util.ArrayList;
@@ -13,7 +8,18 @@ import java.util.ArrayList;
  */
 public class Jahrgang {
 
-    ArrayList<Klasse> klassen = new ArrayList<>();
+    private final ArrayList<Klasse> klassen;
+
+    public Jahrgang() {
+        this.klassen = new ArrayList<>();
+    }
+
+    /**
+     * @return the klassen
+     */
+    public ArrayList<Klasse> getKlassen() {
+        return klassen;
+    }
 
     /**
      * Berechnet die durchschnittliche Gesamtpunktzahl des gesamten Jahrgangs.
@@ -21,17 +27,18 @@ public class Jahrgang {
      * @return
      */
     public double durchschnittErrechnen() {
-        double punktedurchschnitt = 0;
+
         int gesamtpunkte = 0;
         int teilnehmerzahl = 0;
 
-        for (Klasse klasse : klassen) {
-            for (Schueler schueler : klasse.schueler) {
+        for (Klasse klasse : getKlassen()) {
+            for (Schueler schueler : klasse.getSchueler()) {
                 gesamtpunkte += schueler.getGesamtpunktzahl();
                 teilnehmerzahl++;
             }
         }
 
+        double punktedurchschnitt;
         punktedurchschnitt = gesamtpunkte / teilnehmerzahl;
 
         return punktedurchschnitt;
@@ -39,7 +46,7 @@ public class Jahrgang {
 
     public void klasseHinzufügen(Klasse k) {
 
-        klassen.add(k);
+        getKlassen().add(k);
 
     }
 }

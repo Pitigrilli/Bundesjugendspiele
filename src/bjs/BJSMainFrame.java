@@ -69,6 +69,11 @@ public class BJSMainFrame extends javax.swing.JFrame {
         });
 
         jButton1.setText("Drucken");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Speichern");
 
@@ -206,11 +211,11 @@ public class BJSMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         alleSchueler = new Import().gibListe();
-        for (Schueler s : alleSchueler) {
-            aktuelleKlasse.schuelerHinzufügen(s);
-        }
+
+        aktuelleKlasse.schuelerHinzufügen(alleSchueler.get(0));
+
         jTable1.updateUI();
-        for (Schueler s : alleSchueler) {
+        for (Schueler s : aktuelleKlasse.getSchueler()) {
             System.out.println(s);
         }
 
@@ -219,6 +224,13 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private void fileMenuInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fileMenuInputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_fileMenuInputMethodTextChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        for (Schueler s : aktuelleKlasse.getSchueler()) {
+            System.out.println(s);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

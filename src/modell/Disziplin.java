@@ -33,6 +33,8 @@ public abstract class Disziplin implements Serializable {
 
     public void setLeistungString(String leistungString) {
         this.leistungString = leistungString;
+        setLeistung(leistungString);
+        punktzahl = punktzahlberechnen();
     }
 
     public int getLeistung() {

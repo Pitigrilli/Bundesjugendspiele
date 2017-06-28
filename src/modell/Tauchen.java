@@ -14,8 +14,10 @@ public class Tauchen extends Disziplin implements Serializable {
     
     @Override
     public void setLeistung(String wert){
-        leistung = ((int) wert.charAt(1))*60 + ((int) wert.charAt(3))+((int) wert.charAt(4))*60;
+        leistung = Integer.parseInt(wert);
+        punktzahl = punktzahlberechnen();
     }
+    
     @Override
     public int punktzahlberechnen() {
         char geschlecht = schueler.getGeschlecht();

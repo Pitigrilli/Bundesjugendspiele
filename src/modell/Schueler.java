@@ -55,12 +55,11 @@ public class Schueler implements Serializable {
     public int getGeburtsjahr() {
         return geburtsjahr;
     }
-    
-    public int getAlter(){
+
+    public int getAlter() {
         int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));
         return aktuellesJahr - geburtsjahr;
     }
-
 
     public char getGeschlecht() {
         return geschlecht;
@@ -69,19 +68,19 @@ public class Schueler implements Serializable {
     public int getGesamtpunktzahl() {
         int gesamtpunktzahl = 0;
         for (Disziplin d : disziplinen) {
-            gesamtpunktzahl += d.punktzahlberechnen();
+            gesamtpunktzahl += d.getPunktzahl();
         }
         return gesamtpunktzahl;
     }
 
     public String getUrkunde() {
         String urkunde;
-        if(getGesamtpunktzahl()>=39){
+        if (getGesamtpunktzahl() >= 39) {
             urkunde = "E";
-        } else if(getGesamtpunktzahl()>=22){
+        } else if (getGesamtpunktzahl() >= 22) {
             urkunde = "S";
         } else {
-        urkunde = "";
+            urkunde = "";
         }
         return urkunde;
     }
@@ -89,10 +88,14 @@ public class Schueler implements Serializable {
     public ArrayList<Disziplin> getDisziplinen() {
         return disziplinen;
     }
-    
-    public String toString(){
-        String schueler = name + ", " + klasse + ", " + geburtsjahr + ", " + geschlecht + "Leistung Tauchen:" + disziplinen.get(0).getLeistung() + "Leistung Freistil:" + disziplinen.get(1).getLeistung() + "Leistung Rueckenschwimmen:" + disziplinen.get(2).getLeistung();
+
+    public String toString() {
+        String schueler = name + ", " + klasse + ", " + geburtsjahr + ", "
+                + geschlecht + " Leistung Tauchen: " + disziplinen.get(0).getLeistung() +" T-Pkt.: "+disziplinen.get(0).getPunktzahl()
+                + " Leistung Freistil: " + disziplinen.get(1).getLeistung() + " Leistung Rueckenschwimmen: "
+                + disziplinen.get(2).getLeistung()+" R-Pkt.: "+disziplinen.get(2).getPunktzahl();
         return schueler;
     }
+    
 
 }

@@ -9,7 +9,6 @@ package helper;
  *
  * @author finckh.stefan
  */
-import java.io.Serializable;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
@@ -48,7 +47,10 @@ public class Speicherung {
 
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            listeAusDatei = (ArrayList<modell.Schueler>) in.readObject();
+            
+            @SuppressWarnings("unchecked")
+            ArrayList<modell.Schueler> listeAusDatei_temp = (ArrayList<modell.Schueler>) in.readObject();
+            listeAusDatei = listeAusDatei_temp;
             in.close();
             System.out.println("Objekte wiederhergestellt");
         } catch (IOException ex) {

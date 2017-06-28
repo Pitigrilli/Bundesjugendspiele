@@ -22,3 +22,4 @@ Rückenschwimmen:
 setLeistung(String): Aus "1:21" den Wert berechnen für leistung als int
 punktzahlberechnen überprüfen!!
 
+

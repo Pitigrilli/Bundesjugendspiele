@@ -207,6 +207,10 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         alleSchueler = new Import().gibListe();
         for (Schueler s : alleSchueler) {
+            aktuelleKlasse.schuelerHinzufügen(s);
+        }
+        jTable1.updateUI();
+        for (Schueler s : alleSchueler) {
             System.out.println(s);
         }
 

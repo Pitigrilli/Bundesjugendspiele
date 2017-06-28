@@ -7,6 +7,8 @@ package bjs;
 
 import helper.Import;
 import java.util.ArrayList;
+import modell.Jahrgang;
+import modell.Klasse;
 import modell.Schueler;
 
 /**
@@ -14,8 +16,10 @@ import modell.Schueler;
  * @author behl.claus
  */
 public class BJSMainFrame extends javax.swing.JFrame {
-ArrayList<modell.Schueler> alleSchueler;
-ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
+
+    ArrayList<modell.Schueler> alleSchueler;
+    ArrayList<Jahrgang> jahrgangliste = new ArrayList<>();
+    Klasse aktuelleKlasse = new Klasse();
 
     /**
      * Creates new form BJSMainFrame
@@ -41,7 +45,7 @@ ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        importjMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -68,23 +72,16 @@ ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
 
         jButton2.setText("Speichern");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
+        jTable1.setModel(new SchulklasseTablemodell(aktuelleKlasse));
         jScrollPane1.setViewportView(jTable1);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
         fileMenu.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 fileMenuInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -92,13 +89,13 @@ ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
         openMenuItem.setText("Open");
         fileMenu.add(openMenuItem);
 
-        jMenuItem1.setText("Import Schülerliste");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        importjMenuItem.setText("Import Schülerliste");
+        importjMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                importjMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(jMenuItem1);
+        fileMenu.add(importjMenuItem);
 
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Save");
@@ -205,15 +202,15 @@ ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
         // TODO add your handling code here:
     }//GEN-LAST:event_KlasseActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void importjMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importjMenuItemActionPerformed
         // TODO add your handling code here:
-        
-        alleSchueler =  new Import().gibListe();
-        for(Schueler s: alleSchueler){
+
+        alleSchueler = new Import().gibListe();
+        for (Schueler s : alleSchueler) {
             System.out.println(s);
         }
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    }//GEN-LAST:event_importjMenuItemActionPerformed
 
     private void fileMenuInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fileMenuInputMethodTextChanged
         // TODO add your handling code here:
@@ -265,9 +262,9 @@ ArrayList<bjs.BJSMainFrame> jahrgangliste = new ArrayList<>() ;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem importjMenuItem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;

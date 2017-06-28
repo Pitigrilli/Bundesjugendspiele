@@ -15,6 +15,7 @@ import java.util.*;
 public abstract class Disziplin implements Serializable {
 
     protected int leistung;
+    protected String leistungString;
     protected int punktzahl;
     protected Schueler schueler;
 
@@ -25,13 +26,29 @@ public abstract class Disziplin implements Serializable {
     abstract public int punktzahlberechnen();
 
     public abstract void setLeistung(String wert);
-    
-    public int getLeistung(){
+
+//    public void setLeistung(int leistung) {
+//        this.leistung = leistung;
+//    }
+
+    public void setLeistungString(String leistungString) {
+        this.leistungString = leistungString;
+    }
+
+    public int getLeistung() {
         return leistung;
     }
 
     public Schueler getSchueler() {
         return schueler;
+    }
+
+    public String getLeistungString() {
+        return leistungString;
+    }
+
+    public int getPunktzahl() {
+        return punktzahl;
     }
 
 }

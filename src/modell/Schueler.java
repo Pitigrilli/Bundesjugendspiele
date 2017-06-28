@@ -74,14 +74,14 @@ public class Schueler implements Serializable {
         return gesamtpunktzahl;
     }
 
-    public char getUrkunde() {
-        char urkunde;
+    public String getUrkunde() {
+        String urkunde;
         if(getGesamtpunktzahl()>=39){
-            urkunde = 'E';
+            urkunde = "E";
         } else if(getGesamtpunktzahl()>=22){
-            urkunde = 'S';
+            urkunde = "S";
         } else {
-        urkunde = ' ';
+        urkunde = "";
         }
         return urkunde;
     }

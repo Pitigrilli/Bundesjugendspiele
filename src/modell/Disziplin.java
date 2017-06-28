@@ -24,9 +24,7 @@ public abstract class Disziplin implements Serializable {
 
     abstract public int punktzahlberechnen();
 
-    public void setLeistung(int wert) {
-        leistung = wert;
-    }
+    public abstract void setLeistung(String wert);
     
     public int getLeistung(){
         return leistung;

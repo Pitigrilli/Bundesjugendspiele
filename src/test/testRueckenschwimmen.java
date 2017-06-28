@@ -12,10 +12,10 @@ public class testRueckenschwimmen {
     public static void main(String[] args) {
         ArrayList<modell.Schueler> schuelerliste = new ArrayList<>();
         for (int i = 50; i <120; i++) {
-            modell.Schueler neuerSchueler = new modell.Schueler();
+            modell.Schueler neuerSchueler = new modell.Schueler('m',"hans, dampf","06f",2008);
             neuerSchueler.setGeburtsjahr(2007);
             neuerSchueler.setGeschlecht('m');
-            neuerSchueler.getDisziplinen().get(2).setLeistung(i);
+            neuerSchueler.getDisziplinen().get(2).setLeistung("1:56");
             schuelerliste.add(neuerSchueler);
         }
 

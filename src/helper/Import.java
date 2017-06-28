@@ -7,6 +7,7 @@ package helper;
 
 import java.util.ArrayList;
 import java.io.*;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -18,10 +19,12 @@ public class Import {
     ArrayList<modell.Schueler> schuelerliste = new ArrayList<>();
     File csvFile;
 
-    public Import(File csvFile) {
+    public void setcsvFile(File csvFile) {
         this.csvFile = csvFile;
 
     }
+    
+    
 
     public void readLines() {
         BufferedReader br;
@@ -43,27 +46,36 @@ public class Import {
     public void parseLines() {
         for (String listenteil : lines) {
             String[] teile = listenteil.split(";");
-            modell.Schueler schueler = new modell.Schueler();
+            char geschlecht;
+            int geburtsjahr;
+            String klasse;
+            String name;
             if (teile[2].equals("männlich")) {
-                schueler.setGeschlecht('m');
+                geschlecht = 'm';
             } else {
-                schueler.setGeschlecht('w');
+                geschlecht = 'w';
             }
-            int geburtsjahr = Integer.parseInt(teile[3]);
-            schueler.setGeburtsjahr(geburtsjahr);
+            geburtsjahr = Integer.parseInt(teile[3]);
 
-            schueler.setKlasse(teile[0]);
-            schueler.setName(teile[1]);
+            klasse = teile[0];
+            name = teile[1];
 
-            schuelerliste.add(schueler);
+            schuelerliste.add(new modell.Schueler(geschlecht, name, klasse, geburtsjahr));
 
         }
 
     }
 
     public ArrayList<modell.Schueler> gibListe() {
-        readLines();
-        parseLines();
+        
+        JFileChooser chooser = new JFileChooser();
+
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            setcsvFile(chooser.getSelectedFile());
+            readLines();
+            parseLines();
+        }
         return schuelerliste;
     }
 }

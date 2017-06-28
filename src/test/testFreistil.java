@@ -17,10 +17,10 @@ public class testFreistil {
     public static void main(String[] args) {
         ArrayList<modell.Schueler> schueler = new ArrayList<>();
         for (int i = 120; i < 0; i--) {
-            modell.Schueler neuerSchueler = new modell.Schueler();
+            modell.Schueler neuerSchueler = new modell.Schueler('m',"hans, dampf","06f",2008);
             neuerSchueler.setGeburtsjahr(2007);
             neuerSchueler.setGeschlecht('m');
-            neuerSchueler.getDisziplinen().get(3).setLeistung(i);
+            neuerSchueler.getDisziplinen().get(3).setLeistung("1:12");
             schueler.add(neuerSchueler);
         }
 

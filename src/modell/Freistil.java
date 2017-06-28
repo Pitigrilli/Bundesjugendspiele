@@ -12,7 +12,10 @@ public class Freistil extends Disziplin implements Serializable {
     }
 
     @Override
-
+    public void setLeistung(String wert){
+        leistung = ((int) wert.charAt(1))*60 + ((int) wert.charAt(3))+((int) wert.charAt(4))*60;
+    }
+    @Override
     public int punktzahlberechnen() {
         char geschlecht = schueler.getGeschlecht();
         int geburtsjahr = schueler.getGeburtsjahr();

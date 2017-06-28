@@ -16,18 +16,14 @@ import java.io.File;
 public class testImport {
 
     public static void main(String[] args) {
-
-        JFileChooser chooser = new JFileChooser();
-
-        int returnVal = chooser.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            helper.Import test = new helper.Import(chooser.getSelectedFile());
+            helper.Import test = new helper.Import();
             ArrayList<modell.Schueler> schuelerliste = test.gibListe();
+            for (modell.Schueler schueler : schuelerliste) {
+            System.out.println(schueler.toString());
 
-            helper.Speicherung speicherung = new helper.Speicherung();
-            speicherung.listeInDateiSchreiben(schuelerliste);
+            }
 
-        }
+        
 
     }
 }

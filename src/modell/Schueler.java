@@ -17,27 +17,39 @@ public class Schueler implements Serializable {
     private char geschlecht;
     protected ArrayList<Disziplin> disziplinen;
 
-    public Schueler() {
+    public Schueler(char geschlecht, String name, String klasse, int geburtsjahr) {
+        this.geschlecht = geschlecht;
+        this.geburtsjahr = geburtsjahr;
+        this.klasse = klasse;
+        this.name = name;
         disziplinen = new ArrayList<>();
         disziplinen.add(new Tauchen(this));
         disziplinen.add(new Freistil(this));
         disziplinen.add(new Rueckenschwimmen(this));
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getKlasse() {
-        return klasse;
-    }
-
     public void setKlasse(String klasse) {
         this.klasse = klasse;
+    }
+
+    public void setGeburtsjahr(int geburtsjahr) {
+        this.geburtsjahr = geburtsjahr;
+    }
+
+    public void setGeschlecht(char geschlecht) {
+        this.geschlecht = geschlecht;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getKlasse() {
+        return klasse;
     }
 
     public int getGeburtsjahr() {
@@ -49,16 +61,9 @@ public class Schueler implements Serializable {
         return aktuellesJahr - geburtsjahr;
     }
 
-    public void setGeburtsjahr(int geburtsjahr) {
-        this.geburtsjahr = geburtsjahr;
-    }
 
     public char getGeschlecht() {
         return geschlecht;
-    }
-
-    public void setGeschlecht(char geschlecht) {
-        this.geschlecht = geschlecht;
     }
 
     public int getGesamtpunktzahl() {
@@ -71,12 +76,23 @@ public class Schueler implements Serializable {
 
     public char getUrkunde() {
         char urkunde;
+        if(getGesamtpunktzahl()>=39){
+            urkunde = 'E';
+        } else if(getGesamtpunktzahl()>=22){
+            urkunde = 'S';
+        } else {
         urkunde = ' ';
+        }
         return urkunde;
     }
 
     public ArrayList<Disziplin> getDisziplinen() {
         return disziplinen;
+    }
+    
+    public String toString(){
+        String schueler = name + ", " + klasse + ", " + geburtsjahr + ", " + geschlecht + "Leistung Tauchen:" + disziplinen.get(0).getLeistung() + "Leistung Freistil:" + disziplinen.get(1).getLeistung() + "Leistung Rueckenschwimmen:" + disziplinen.get(2).getLeistung();
+        return schueler;
     }
 
 }

@@ -12,13 +12,12 @@ public class Rueckenschwimmen extends Disziplin implements Serializable {
         super(s);
     }
 
-    /**
-     *
-     * @return Die Punktzahl, welche der erzielten Leistung entspricht.
-     */
+    @Override
+    public void setLeistung(String wert){
+        leistung = ((int) wert.charAt(0))*60 + ((int) wert.charAt(2))+((int) wert.charAt(3))*60;
+    }
     @Override
     public int punktzahlberechnen() {
-        int punktzahl = 0;
         char geschlecht = schueler.getGeschlecht();
         int alter = schueler.getAlter();
         switch (geschlecht) {

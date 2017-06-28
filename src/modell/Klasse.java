@@ -22,7 +22,11 @@ public class Klasse {
     }
 
     public float punktedurchschnittBerechnen() {
-        float punktedurchschnitt = 0;
+        int klassegesamtpunktzahl = 0;
+        for (Schueler s : schueler) {
+            klassegesamtpunktzahl += s.getGesamtpunktzahl();
+        }
+        float punktedurchschnitt = klassegesamtpunktzahl/(schueler.size()); 
         return punktedurchschnitt;
     }
 

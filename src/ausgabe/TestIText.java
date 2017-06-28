@@ -45,7 +45,7 @@ public class TestIText {
         // step 3
         document.open();
         // step 4
-        document.add(new Paragraph("Hello World!"));
+        document.add(new Paragraph("Hallo Schüler"));
         // step 5
         document.close();
     }

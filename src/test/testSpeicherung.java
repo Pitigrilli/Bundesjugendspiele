@@ -17,7 +17,7 @@ public class testSpeicherung {
         helper.Speicherung speicherung = new helper.Speicherung();
         ArrayList<modell.Schueler> schuelerliste = speicherung.gibListe();
         for (modell.Schueler schueler : schuelerliste) {
-            System.out.println(schueler.getGeburtsjahr());
+            System.out.println(schueler.toString());
 
         }
 

@@ -39,6 +39,7 @@ public class Speicherung {
             out = new ObjectOutputStream(fos);
             out.writeObject(bjs);
             out.close();
+            fos.close();
             System.out.println("Objekte gespeichert");
 
         } catch (IOException ex) {
@@ -63,7 +64,7 @@ public class Speicherung {
         }
     }
 
-    public BJS listeAusDateiLesen() {
+    public BJS bjsAusDateiLesen() {
         BJS bjs=new BJS();
         FileInputStream fis;
         ObjectInputStream in;
@@ -88,7 +89,7 @@ public class Speicherung {
     }
 
     public ArrayList<modell.Schueler> gibListe() {
-        listeAusDateiLesen();
+        bjsAusDateiLesen();
         return listeAusDatei;
     }
 

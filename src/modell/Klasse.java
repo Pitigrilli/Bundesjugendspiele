@@ -1,12 +1,13 @@
 package modell;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author holler.nils
  */
-public class Klasse {
+public class Klasse implements Serializable, Comparable {
     private String name;
     private final ArrayList<Schueler> schueler;
 
@@ -15,8 +16,14 @@ public class Klasse {
         this.name = name;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Klasse k = (Klasse) o;
+        return this.name.compareTo(k.getName());
+    }
+
     /**
-     * @return the schueler
+     * @return the Schueler
      */
     public ArrayList<Schueler> getSchueler() {
         return schueler;

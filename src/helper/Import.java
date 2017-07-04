@@ -64,6 +64,10 @@ public class Import {
             String jahrgang = k.getName().substring(0, 1);
             
         }
+        bjs.getAlleKlassen().sort(null);
+        for(Klasse k: bjs.getAlleKlassen()){
+            k.getSchueler().sort(null);
+        }
         return bjs;
     }
 

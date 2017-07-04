@@ -101,7 +101,7 @@ public class SchulklasseTablemodell extends AbstractTableModel {
 
         switch (column) {
             case 0:
-                return s.getName();
+                return s.getKlasse()+" "+s.getName();
             case 1:
                 return s.getGeschlecht();
             case 2:

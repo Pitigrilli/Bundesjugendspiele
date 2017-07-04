@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 import modell.BJS;
@@ -44,7 +45,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Klasse = new javax.swing.JComboBox<>();
+        KlasseJComboBox = new javax.swing.JComboBox<>();
         jButtonDrucken = new javax.swing.JButton();
         jButtonSpeichern = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,12 +68,17 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bundesjugendspiele v0.1");
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 1200));
 
-        Klasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Klasse.addActionListener(new java.awt.event.ActionListener() {
+        KlasseJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        KlasseJComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                KlasseJComboBoxItemStateChanged(evt);
+            }
+        });
+        KlasseJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KlasseActionPerformed(evt);
+                KlasseJComboBoxActionPerformed(evt);
             }
         });
 
@@ -199,7 +205,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Klasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(KlasseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDrucken)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,7 +222,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDrucken)
                     .addComponent(jButtonSpeichern)
-                    .addComponent(Klasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(KlasseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addContainerGap())
@@ -234,9 +240,18 @@ public class BJSMainFrame extends javax.swing.JFrame {
         System.out.println("About angeklickt");
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void KlasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KlasseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KlasseActionPerformed
+    private void KlasseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KlasseJComboBoxActionPerformed
+        String klassenName=String.valueOf(KlasseJComboBox.getSelectedItem());
+        System.out.println(klassenName);
+        for(Klasse k: bjs.getAlleKlassen()){
+            if(k.getName().equals(klassenName)){
+                aktuelleKlasse = k;
+                break;
+            }
+        }
+        this.setTableModell();
+        
+    }//GEN-LAST:event_KlasseJComboBoxActionPerformed
 
     private void importjMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importjMenuItemActionPerformed
         // TODO add your handling code here:
@@ -244,13 +259,12 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         aktuelleKlasse = bjs.getKlasse(0);
 
-        jTable1.updateUI();
-        
-        System.out.println("Textausgabe Import ");
-        for (Schueler s : aktuelleKlasse.getSchueler()) {
-            
-            System.out.println(s);
+        System.out.println("Textausgabe Import Klassen ");
+        for(Klasse k: bjs.getAlleKlassen()){
+            System.out.println(k.getName());
         }
+        this.setTableModell();
+        this.setComboBoxModel();
 
     }//GEN-LAST:event_importjMenuItemActionPerformed
 
@@ -261,7 +275,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private void jButtonDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDruckenActionPerformed
         // TODO add your handling code here:
         for (Schueler s : aktuelleKlasse.getSchueler()) {
-            System.out.println(s);         
+            System.out.println(s);
         }
 
     }//GEN-LAST:event_jButtonDruckenActionPerformed
@@ -269,10 +283,9 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         // TODO add your handling code here:
         int key = evt.getKeyCode();
-        if (key == KeyEvent.VK_ENTER)
-        {
-                   jTable1.validate();
-                   jTable1.repaint();
+        if (key == KeyEvent.VK_ENTER) {
+            jTable1.validate();
+            jTable1.repaint();
         }
 
     }//GEN-LAST:event_jTable1KeyReleased
@@ -285,8 +298,20 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
-        
+        Speicherung sp = new Speicherung(bjs);
+        bjs = sp.bjsAusDateiLesen();
+        aktuelleKlasse = bjs.getKlasse(0);
+
+        this.setTableModell();
+        for(Klasse k: bjs.getAlleKlassen()){
+            System.out.println(k.getName());
+        }
+        this.setComboBoxModel();
     }//GEN-LAST:event_openMenuItemActionPerformed
+
+    private void KlasseJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_KlasseJComboBoxItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KlasseJComboBoxItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -323,8 +348,31 @@ public class BJSMainFrame extends javax.swing.JFrame {
         });
     }
 
+    public void setTableModell() {
+        jTable1.setModel(new SchulklasseTablemodell(aktuelleKlasse));
+
+        jTable1.setModel(new SchulklasseTablemodell(aktuelleKlasse));
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(300);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
+        JFormattedTextField ftext = new JFormattedTextField();
+
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(new DateRenderer());
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(new DateRenderer());
+        jTable1.setRowHeight(32);
+        jTable1.updateUI();
+    }
+    
+    public void setComboBoxModel(){
+        String[] klassenliste = new String[bjs.getAlleKlassen().size()];
+        for(int i = 0; i< bjs.getAlleKlassen().size();i++){
+            klassenliste[i]=bjs.getAlleKlassen().get(i).getName();
+        }
+        this.KlasseJComboBox.setModel(new DefaultComboBoxModel(klassenliste));
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Klasse;
+    private javax.swing.JComboBox<String> KlasseJComboBox;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;

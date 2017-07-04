@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Schueler implements Serializable {
+public class Schueler implements Serializable, Comparable {
 
     private String name;
     private String klasse;
@@ -26,6 +26,12 @@ public class Schueler implements Serializable {
         disziplinen.add(new Tauchen(this));
         disziplinen.add(new Freistil(this));
         disziplinen.add(new Rueckenschwimmen(this));
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Schueler s = (Schueler)o;
+        return this.name.compareTo(s.getName());
     }
 
     public void setName(String name) {

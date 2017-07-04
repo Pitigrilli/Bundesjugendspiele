@@ -6,7 +6,13 @@
 package bjs;
 
 import helper.Import;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
+import modell.BJS;
 import modell.Jahrgang;
 import modell.Klasse;
 import modell.Schueler;
@@ -17,8 +23,7 @@ import modell.Schueler;
  */
 public class BJSMainFrame extends javax.swing.JFrame {
 
-    ArrayList<modell.Schueler> alleSchueler;
-    ArrayList<Jahrgang> jahrgangliste = new ArrayList<>();
+    BJS bjs;
     Klasse aktuelleKlasse = new Klasse();
 
     /**
@@ -60,6 +65,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bundesjugendspiele v0.1");
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         Klasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Klasse.addActionListener(new java.awt.event.ActionListener() {
@@ -78,15 +84,28 @@ public class BJSMainFrame extends javax.swing.JFrame {
         jButton2.setText("Speichern");
 
         jTable1.setModel(new SchulklasseTablemodell(aktuelleKlasse));
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(300);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
+        JFormattedTextField ftext = new JFormattedTextField();
+
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(new DateRenderer());
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(new DateRenderer());
+        jTable1.setRowHeight(32);
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
         fileMenu.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 fileMenuInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -175,8 +194,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -209,12 +228,12 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
     private void importjMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importjMenuItemActionPerformed
         // TODO add your handling code here:
+        bjs = new Import().gibBJS();
 
-        alleSchueler = new Import().gibListe();
-
-        aktuelleKlasse.schuelerHinzufügen(alleSchueler.get(0));
+        aktuelleKlasse = bjs.getKlasse(0);
 
         jTable1.updateUI();
+        
         for (Schueler s : aktuelleKlasse.getSchueler()) {
             System.out.println(s);
         }
@@ -231,6 +250,17 @@ public class BJSMainFrame extends javax.swing.JFrame {
             System.out.println(s);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+        int key = evt.getKeyCode();
+        if (key == KeyEvent.VK_ENTER)
+        {
+                   jTable1.validate();
+                   jTable1.repaint();
+        }
+
+    }//GEN-LAST:event_jTable1KeyReleased
 
     /**
      * @param args the command line arguments

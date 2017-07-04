@@ -13,6 +13,7 @@ public class Freistil extends Disziplin implements Serializable {
 
     @Override
     public void setLeistung(String wert){
+        System.out.println(wert);
         leistung = (Integer.parseInt(wert.substring(0,1)))*60 + (Integer.parseInt(wert.substring(2,4)));
         punktzahl = punktzahlberechnen();
     }

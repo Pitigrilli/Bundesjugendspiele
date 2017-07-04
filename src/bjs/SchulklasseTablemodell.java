@@ -6,6 +6,7 @@
 package bjs;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import modell.Klasse;
 import modell.Schueler;

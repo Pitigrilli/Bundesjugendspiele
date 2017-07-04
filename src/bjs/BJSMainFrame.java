@@ -6,7 +6,9 @@
 package bjs;
 
 import helper.Import;
+import helper.Speicherung;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
@@ -24,7 +26,7 @@ import modell.Schueler;
 public class BJSMainFrame extends javax.swing.JFrame {
 
     BJS bjs;
-    Klasse aktuelleKlasse = new Klasse();
+    Klasse aktuelleKlasse = new Klasse("05a");
 
     /**
      * Creates new form BJSMainFrame
@@ -43,8 +45,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         Klasse = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonDrucken = new javax.swing.JButton();
+        jButtonSpeichern = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
@@ -74,14 +76,19 @@ public class BJSMainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Drucken");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDrucken.setText("Drucken");
+        jButtonDrucken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonDruckenActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Speichern");
+        jButtonSpeichern.setText("Speichern");
+        jButtonSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSpeichernActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new SchulklasseTablemodell(aktuelleKlasse));
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -111,6 +118,11 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Open");
+        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(openMenuItem);
 
         importjMenuItem.setText("Import Schülerliste");
@@ -189,9 +201,9 @@ public class BJSMainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Klasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonDrucken)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonSpeichern)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -202,8 +214,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonDrucken)
+                    .addComponent(jButtonSpeichern)
                     .addComponent(Klasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
@@ -234,7 +246,9 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         jTable1.updateUI();
         
+        System.out.println("Textausgabe Import ");
         for (Schueler s : aktuelleKlasse.getSchueler()) {
+            
             System.out.println(s);
         }
 
@@ -244,12 +258,13 @@ public class BJSMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fileMenuInputMethodTextChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDruckenActionPerformed
         // TODO add your handling code here:
         for (Schueler s : aktuelleKlasse.getSchueler()) {
-            System.out.println(s);
+            System.out.println(s);         
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButtonDruckenActionPerformed
 
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         // TODO add your handling code here:
@@ -261,6 +276,17 @@ public class BJSMainFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTable1KeyReleased
+
+    private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
+        // TODO add your handling code here:
+        Speicherung sp = new Speicherung(bjs);
+        sp.bjsInDateiSchreiben();
+    }//GEN-LAST:event_jButtonSpeichernActionPerformed
+
+    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_openMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,8 +335,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem importjMenuItem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonDrucken;
+    private javax.swing.JButton jButtonSpeichern;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;

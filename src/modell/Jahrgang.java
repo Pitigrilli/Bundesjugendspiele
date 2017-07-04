@@ -9,9 +9,11 @@ import java.util.ArrayList;
 public class Jahrgang {
 
     private final ArrayList<Klasse> klassen;
+    private int name;
 
-    public Jahrgang() {
+    public Jahrgang(int name) {
         this.klassen = new ArrayList<>();
+        this.name = name;
     }
 
     /**
@@ -48,5 +50,8 @@ public class Jahrgang {
 
         getKlassen().add(k);
 
+    }
+    public int getName(){
+        return name;
     }
 }

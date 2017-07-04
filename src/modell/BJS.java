@@ -5,13 +5,14 @@
  */
 package modell;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author behl.claus
  */
-public class BJS {
+public class BJS implements Serializable {
 
     ArrayList<modell.Schueler> alleSchueler = new ArrayList<>();;
     ArrayList<Jahrgang> jahrgangliste = new ArrayList<>();

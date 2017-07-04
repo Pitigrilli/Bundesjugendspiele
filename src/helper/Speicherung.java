@@ -15,12 +15,36 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import modell.BJS;
 
 public class Speicherung {
+    BJS bjs;
 
     String filename = "storage.txt";
     ArrayList<modell.Schueler> list;
     ArrayList<modell.Schueler> listeAusDatei;
+    
+    public Speicherung(BJS bjs){
+        this.bjs=bjs;
+    }
+    
+    public void bjsInDateiSchreiben() {
+        
+        FileOutputStream fos;
+        ObjectOutputStream out;
+
+
+        try {
+            fos = new FileOutputStream(filename);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(bjs);
+            out.close();
+            System.out.println("Objekte gespeichert");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void listeInDateiSchreiben(ArrayList<modell.Schueler> schuelerliste) {
         FileOutputStream fos;
@@ -39,7 +63,8 @@ public class Speicherung {
         }
     }
 
-    public void listeAusDateiLesen() {
+    public BJS listeAusDateiLesen() {
+        BJS bjs=new BJS();
         FileInputStream fis;
         ObjectInputStream in;
 
@@ -49,8 +74,9 @@ public class Speicherung {
             in = new ObjectInputStream(fis);
             
             @SuppressWarnings("unchecked")
-            ArrayList<modell.Schueler> listeAusDatei_temp = (ArrayList<modell.Schueler>) in.readObject();
-            listeAusDatei = listeAusDatei_temp;
+            Object obj =  in.readObject();
+            bjs = (BJS) obj;
+ 
             in.close();
             System.out.println("Objekte wiederhergestellt");
         } catch (IOException ex) {
@@ -58,6 +84,7 @@ public class Speicherung {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        return bjs;
     }
 
     public ArrayList<modell.Schueler> gibListe() {

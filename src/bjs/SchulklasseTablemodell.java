@@ -6,7 +6,6 @@
 package bjs;
 
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import modell.Klasse;
 import modell.Schueler;
@@ -16,6 +15,30 @@ import modell.Schueler;
  * @author claus
  */
 public class SchulklasseTablemodell extends AbstractTableModel {
+
+    private ArrayList<Schueler> schuelerListe;
+    private Klasse k;
+
+    public ArrayList<Schueler> getSchuelerListe() {
+        return schuelerListe;
+    }
+
+    public void setSchuelerListe(ArrayList<Schueler> schuelerListe) {
+        this.schuelerListe = schuelerListe;
+    }
+
+    public Klasse getK() {
+        return k;
+    }
+
+    public void setK(Klasse k) {
+        this.k = k;
+    }
+
+    public SchulklasseTablemodell(Klasse k) {
+        this.k = k;
+        schuelerListe = k.getSchueler();
+    }
 
     private final String[] columnNames
             = {
@@ -31,14 +54,6 @@ public class SchulklasseTablemodell extends AbstractTableModel {
                 "Summe",
                 "Urkunde"
             };
-
-    private ArrayList<Schueler> schuelerListe;
-    private final Klasse k;
-
-    public SchulklasseTablemodell(Klasse k) {
-        this.k = k;
-        schuelerListe = k.getSchueler();
-    }
 
     @Override
     public int getColumnCount() {

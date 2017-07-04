@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * @author holler.nils
  */
 public class Klasse {
-
+    private String name;
     private final ArrayList<Schueler> schueler;
 
-    public Klasse() {
+    public Klasse(String name) {
         this.schueler = new ArrayList<>();
+        this.name = name;
     }
 
     /**
@@ -36,5 +37,9 @@ public class Klasse {
 
     public void schuelerHinzufügen(Schueler s) {
         getSchueler().add(s);
+    }
+    
+    public String getName(){
+        return name;
     }
 }

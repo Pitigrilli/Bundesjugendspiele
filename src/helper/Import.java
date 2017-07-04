@@ -17,6 +17,7 @@ import modell.Schueler;
  * @author finckh.stefan
  */
 public class Import {
+
     BJS bjs = new BJS();
 
     ArrayList<String> lines = new ArrayList<>();
@@ -37,19 +38,34 @@ public class Import {
             readLines();
             parseLines();
         }
-        /* Hier ist zu ergänzen 
-         schuelerListe auf KLassen verteilen
-            Klassen auf Jahrgänge
-            Alles in Bjs stecken
-        */
-        bjs.getAlleKlassen().add(new Klasse());
-        for(Schueler s: schuelerliste){
-            bjs.getAlleKlassen().get(0).schuelerHinzufügen(s);
+
+        for (Schueler s : schuelerliste) {
+
+            boolean existiert = false;
+            for (Klasse k : bjs.getAlleKlassen()) {
+                if (k.getName().equals(s.getKlasse())) {
+                    existiert = true;
+                }
+
+            }
+            if (!existiert) {
+                bjs.getAlleKlassen().add(new Klasse(s.getKlasse()));
+            }
+            for (Klasse k : bjs.getAlleKlassen()) {
+                if (k.getName().equals(s.getKlasse())) {
+                    k.schuelerHinzufügen(s);
+                }
+            }
+
+        }
+
+        for (Klasse k : bjs.getAlleKlassen()) {
+            
+            String jahrgang = k.getName().substring(0, 1);
+            
         }
         return bjs;
     }
-    
-    
 
     public void readLines() {
         BufferedReader br;
@@ -92,7 +108,7 @@ public class Import {
     }
 
     public ArrayList<modell.Schueler> gibListe() {
-        
+
         JFileChooser chooser = new JFileChooser();
 
         int returnVal = chooser.showOpenDialog(null);

@@ -31,7 +31,7 @@ public class Schueler implements Serializable, Comparable {
     @Override
     public int compareTo(Object o) {
         Schueler s = (Schueler)o;
-        return this.name.compareTo(s.getName());
+        return name.compareTo(s.getName());
     }
 
     public void setName(String name) {
@@ -61,6 +61,8 @@ public class Schueler implements Serializable, Comparable {
     public int getGeburtsjahr() {
         return geburtsjahr;
     }
+    
+    
 
     public int getAlter() {
         int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));

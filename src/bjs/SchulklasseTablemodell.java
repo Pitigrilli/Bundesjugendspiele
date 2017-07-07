@@ -6,6 +6,7 @@
 package bjs;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import modell.Klasse;
 import modell.Schueler;
@@ -17,7 +18,7 @@ import modell.Schueler;
 public class SchulklasseTablemodell extends AbstractTableModel {
 
     private ArrayList<Schueler> schuelerListe;
-    private Klasse k;
+    private Klasse aktuelleKlasse;
 
     public ArrayList<Schueler> getSchuelerListe() {
         return schuelerListe;
@@ -27,16 +28,16 @@ public class SchulklasseTablemodell extends AbstractTableModel {
         this.schuelerListe = schuelerListe;
     }
 
-    public Klasse getK() {
-        return k;
+    public Klasse getKlasse() {
+        return aktuelleKlasse;
     }
 
-    public void setK(Klasse k) {
-        this.k = k;
+    public void setKlasse(Klasse k) {
+        this.aktuelleKlasse = k;
     }
 
     public SchulklasseTablemodell(Klasse k) {
-        this.k = k;
+        this.aktuelleKlasse = k;
         schuelerListe = k.getSchueler();
     }
 
@@ -73,6 +74,7 @@ public class SchulklasseTablemodell extends AbstractTableModel {
     @Override
     public Class getColumnClass(int column) {
         switch (column) {
+            case 2:
             case 6:
             case 7:
             case 8:
@@ -101,7 +103,7 @@ public class SchulklasseTablemodell extends AbstractTableModel {
 
         switch (column) {
             case 0:
-                return s.getKlasse()+" "+s.getName();
+                return s.getName();
             case 1:
                 return s.getGeschlecht();
             case 2:
@@ -139,7 +141,7 @@ public class SchulklasseTablemodell extends AbstractTableModel {
                 s.getDisziplinen().get(1).setLeistungString((String) value);
                 break;
             case 5:
-                s.getDisziplinen().get(0).setLeistungString((String) value);
+                s.getDisziplinen().get(0).setLeistungString((String) value );
                 break;
         }
 

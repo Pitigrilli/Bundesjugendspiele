@@ -17,434 +17,382 @@ public class Freistil extends Disziplin implements Serializable {
         leistung = (Integer.parseInt(wert.substring(0,1)))*60 + (Integer.parseInt(wert.substring(2,4)));
         punktzahl = punktzahlberechnen();
     }
+    
     @Override
     public int punktzahlberechnen() {
+        int punktzahlNeu = 0;
         char geschlecht = schueler.getGeschlecht();
-        int geburtsjahr = schueler.getGeburtsjahr();
+        int alter = schueler.getAlter();
         switch (geschlecht) {
-            case 'm': {
-                switch (geburtsjahr) {
-                    case 2007:
+            case 'm':
+                switch (alter) {
+                    case 10:
                         if (leistung > 100) {
-                            return 0;
-                        }
-
-                        if (leistung > 95) {
-                            punktzahl = (-leistung + (100 + 1 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 0;
+                        } else if (leistung > 95) {
+                            punktzahlNeu = 1;
                         } else if (leistung > 90) {
-                            punktzahl = (-leistung + (95 + 2 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 2;
                         } else if (leistung > 85) {
-                            punktzahl = (-leistung + (90 + 3 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 3;
                         } else if (leistung > 80) {
-                            punktzahl = (-leistung + (85 + 4 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 4;
                         } else if (leistung > 76) {
-                            punktzahl = (-leistung + (80 + 5 * 4)) / 4;
-                            return punktzahl;
+                            punktzahlNeu = 5;
                         } else if (leistung > 72) {
-                            punktzahl = (-leistung + (76 + 6 * 4)) / 4;
-                            return punktzahl;
+                            punktzahlNeu = 6;
                         } else if (leistung > 69) {
-                            punktzahl = (-leistung + (72 + 7 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 7;
                         } else if (leistung > 66) {
-                            punktzahl = (-leistung + (69 + 8 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 8;
                         } else if (leistung > 63) {
-                            punktzahl = (-leistung + (66 + 9 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 9;
                         } else if (leistung > 61) {
-                            punktzahl = (-leistung + (63 + 10 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 10;
                         } else if (leistung > 59) {
-                            punktzahl = (-leistung + (61 + 11 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 11;
                         } else if (leistung > 57) {
-                            punktzahl = (-leistung + (59 + 12 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 12;
                         } else if (leistung > 55) {
-                            punktzahl = (-leistung + (57 + 13 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 13;
                         } else if (leistung > 53) {
-                            punktzahl = (-leistung + (55 + 14 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 14;
                         } else {
-                            return 15;
-
+                            punktzahlNeu = 15;
                         }
+                        break;
 
-                    case 2006:
+                    case 11:
                         if (leistung > 95) {
-                            return 0;
-                        }
-
-                        if (leistung > 90) {
-                            punktzahl = (-leistung + (95 + 1 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 0;
+                        } else if (leistung > 90) {
+                            punktzahlNeu = 1;
                         } else if (leistung > 85) {
-                            punktzahl = (-leistung + (90 + 2 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 2;
                         } else if (leistung > 80) {
-                            punktzahl = (-leistung + (85 + 3 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 3;
                         } else if (leistung > 76) {
-                            punktzahl = (-leistung + (80 + 4 * 4)) / 4;
-                            return punktzahl;
+                            punktzahlNeu = 4;
                         } else if (leistung > 72) {
-                            punktzahl = (-leistung + (76 + 5 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 72) {
-                            punktzahl = (-leistung + (69 + 6 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 5;
+                        } else if (leistung > 69) {
+                            punktzahlNeu = 6;
                         } else if (leistung > 66) {
-                            punktzahl = (-leistung + (69 + 7 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 7;
                         } else if (leistung > 63) {
-                            punktzahl = (-leistung + (66 + 8 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 8;
                         } else if (leistung > 61) {
-                            punktzahl = (-leistung + (63 + 9 * 3)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 9;
                         } else if (leistung > 59) {
-                            punktzahl = (-leistung + (61 + 10 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 10;
                         } else if (leistung > 57) {
-                            punktzahl = (-leistung + (59 + 11 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 11;
                         } else if (leistung > 55) {
-                            punktzahl = (-leistung + (57 + 12 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 12;
                         } else if (leistung > 53) {
-                            punktzahl = (-leistung + (55 + 13 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 13;
                         } else if (leistung > 51) {
-                            punktzahl = (-leistung + (53 + 14 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 14;
                         } else {
-                            return 15;
-
+                            punktzahlNeu = 15;
                         }
+                        break;
 
-                    case 2005:
+                    case 12:
                         if (leistung > 86) {
-                            return 0;
-                        }
-
-                        if (leistung > 81) {
-                            punktzahl = (-leistung + (86 + 1 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 0;
+                        } else if (leistung > 81) {
+                            punktzahlNeu = 1;
                         } else if (leistung > 76) {
-                            punktzahl = (-leistung + (81 + 2 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 2;
                         } else if (leistung > 71) {
-                            punktzahl = (-leistung + (76 + 3 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 3;
                         } else if (leistung > 67) {
-                            punktzahl = (-leistung + (71 + 4 * 4)) / 4;
-                            return punktzahl;
+                            punktzahlNeu = 4;
                         } else if (leistung > 63) {
-                            punktzahl = (-leistung + (67 + 5 * 4)) / 4;
-                            return punktzahl;
+                            punktzahlNeu = 5;
                         } else if (leistung > 60) {
-                            punktzahl = (-leistung + (63 + 6 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 6;
                         } else if (leistung > 57) {
-                            punktzahl = (-leistung + (60 + 7 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 7;
                         } else if (leistung > 54) {
-                            punktzahl = (-leistung + (57 + 8 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 8;
                         } else if (leistung > 52) {
-                            punktzahl = (-leistung + (54 + 9 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 9;
                         } else if (leistung > 50) {
-                            punktzahl = (-leistung + (52 + 10 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 10;
                         } else if (leistung > 48) {
-                            punktzahl = (-leistung + (50 + 11 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 11;
                         } else if (leistung > 46) {
-                            punktzahl = (-leistung + (48 + 12 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 12;
                         } else if (leistung > 44) {
-                            punktzahl = (-leistung + (46 + 13 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 13;
                         } else if (leistung > 42) {
-                            punktzahl = (-leistung + (44 + 14 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 14;
                         } else {
-                            return 15;
-
+                            punktzahlNeu = 15;
                         }
+                        break;
 
-                    case 2004:
+                    case 13:
+                    case 14:
                         if (leistung > 84) {
-                            return 0;
-                        }
-                }
-                if (leistung > 79) {
-                    punktzahl = (-leistung + (84 + 1 * 5)) / 5;
-                    return punktzahl;
-                } else if (leistung > 74) {
-                    punktzahl = (-leistung + (79 + 2 * 5)) / 5;
-                    return punktzahl;
-                } else if (leistung > 69) {
-                    punktzahl = (-leistung + (74 + 3 * 5)) / 5;
-                    return punktzahl;
-                } else if (leistung > 65) {
-                    punktzahl = (-leistung + (69 + 4 * 4)) / 4;
-                    return punktzahl;
-                } else if (leistung > 61) {
-                    punktzahl = (-leistung + (65 + 5 * 4)) / 4;
-                    return punktzahl;
-                } else if (leistung > 58) {
-                    punktzahl = (-leistung + (61 + 6 * 4)) / 4;
-                    return punktzahl;
-                } else if (leistung > 55) {
-                    punktzahl = (-leistung + (58 + 7 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 52) {
-                    punktzahl = (-leistung + (55 + 8 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 50) {
-                    punktzahl = (-leistung + (52 + 9 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 48) {
-                    punktzahl = (-leistung + (50 + 10 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 46) {
-                    punktzahl = (-leistung + (48 + 11 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 44) {
-                    punktzahl = (-leistung + (46 + 12 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 42) {
-                    punktzahl = (-leistung + (44 + 13 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 40) {
-                    punktzahl = (-leistung + (42 + 14 * 2)) / 2;
-                    return punktzahl;
-                } else {
-                    return 15;
-
-                }
-            }
-            case 'w': {
-                switch (geburtsjahr) {
-                    case 2007:
-                        if (leistung > 100) {
-                            return 0;
-                        }
-
-                        if (leistung > 95) {
-                            punktzahl = (-leistung + (100 + 1 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 90) {
-                            punktzahl = (-leistung + (95 + 2 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 85) {
-                            punktzahl = (-leistung + (90 + 3 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 80) {
-                            punktzahl = (-leistung + (85 + 4 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 76) {
-                            punktzahl = (-leistung + (80 + 5 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 72) {
-                            punktzahl = (-leistung + (76 + 6 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 69) {
-                            punktzahl = (-leistung + (72 + 7 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 66) {
-                            punktzahl = (-leistung + (69 + 8 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 63) {
-                            punktzahl = (-leistung + (66 + 9 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 61) {
-                            punktzahl = (-leistung + (63 + 10 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 59) {
-                            punktzahl = (-leistung + (61 + 11 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 57) {
-                            punktzahl = (-leistung + (59 + 12 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 55) {
-                            punktzahl = (-leistung + (57 + 13 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 53) {
-                            punktzahl = (-leistung + (55 + 14 * 2)) / 2;
-                            return punktzahl;
-                        } else {
-                            return 15;
-
-                        }
-
-                    case 2006:
-                        if (leistung > 95) {
-                            return 0;
-                        }
-
-                        if (leistung > 90) {
-                            punktzahl = (-leistung + (95 + 1 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 85) {
-                            punktzahl = (-leistung + (90 + 2 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 80) {
-                            punktzahl = (-leistung + (85 + 3 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 76) {
-                            punktzahl = (-leistung + (80 + 4 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 72) {
-                            punktzahl = (-leistung + (76 + 5 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 72) {
-                            punktzahl = (-leistung + (69 + 6 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 66) {
-                            punktzahl = (-leistung + (69 + 7 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 63) {
-                            punktzahl = (-leistung + (66 + 8 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 61) {
-                            punktzahl = (-leistung + (63 + 9 * 3)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 59) {
-                            punktzahl = (-leistung + (61 + 10 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 57) {
-                            punktzahl = (-leistung + (59 + 11 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 55) {
-                            punktzahl = (-leistung + (57 + 12 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 53) {
-                            punktzahl = (-leistung + (55 + 13 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 51) {
-                            punktzahl = (-leistung + (53 + 14 * 2)) / 2;
-                            return punktzahl;
-                        } else {
-                            return 15;
-
-                        }
-
-                    case 2005:
-                        if (leistung > 93) {
-                            return 0;
-                        }
-
-                        if (leistung > 88) {
-                            punktzahl = (-leistung + (93 + 1 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 83) {
-                            punktzahl = (-leistung + (88 + 2 * 5)) / 5;
-                            return punktzahl;
-                        } else if (leistung > 78) {
-                            punktzahl = (-leistung + (83 + 3 * 5)) / 5;
-                            return punktzahl;
+                            punktzahlNeu = 0;
+                        } else if (leistung > 79) {
+                            punktzahlNeu = 1;
                         } else if (leistung > 74) {
-                            punktzahl = (-leistung + (78 + 4 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 70) {
-                            punktzahl = (-leistung + (74 + 5 * 4)) / 4;
-                            return punktzahl;
-                        } else if (leistung > 67) {
-                            punktzahl = (-leistung + (70 + 6 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 64) {
-                            punktzahl = (-leistung + (67 + 7 * 3)) / 3;
-                            return punktzahl;
+                            punktzahlNeu = 2;
+                        } else if (leistung > 69) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 65) {
+                            punktzahlNeu = 4;
                         } else if (leistung > 61) {
-                            punktzahl = (-leistung + (64 + 8 * 3)) / 3;
-                            return punktzahl;
-                        } else if (leistung > 59) {
-                            punktzahl = (-leistung + (61 + 9 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 57) {
-                            punktzahl = (-leistung + (59 + 10 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 5;
+                        } else if (leistung > 58) {
+                            punktzahlNeu = 6;
                         } else if (leistung > 55) {
-                            punktzahl = (-leistung + (57 + 11 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 53) {
-                            punktzahl = (-leistung + (55 + 12 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 51) {
-                            punktzahl = (-leistung + (53 + 13 * 2)) / 2;
-                            return punktzahl;
-                        } else if (leistung > 49) {
-                            punktzahl = (-leistung + (51 + 14 * 2)) / 2;
-                            return punktzahl;
+                            punktzahlNeu = 7;
+                        } else if (leistung > 52) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 50) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 48) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 46) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 44) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 42) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 40) {
+                            punktzahlNeu = 14;
                         } else {
-                            return 15;
-
+                            punktzahlNeu = 15;
                         }
+                        break;
+                    case 15:
+                        if (leistung > 73) {
+                            punktzahlNeu = 0;
+                        } else if (leistung > 66) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 63) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 55) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 49) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 46) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 44) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 42) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 40) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 38) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 37) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 36) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 35) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
+                        }
+                }
+                break;
 
-                    case 2004:
+            case 'w':
+                switch (alter) {
+                    case 10:
+                        if (leistung > 100) {
+                            punktzahlNeu = 0;
+                        } else if (leistung > 95) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 90) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 85) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 80) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 76) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 72) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 69) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 66) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 63) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 61) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 57) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 55) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
+                        }
+                        break;
+
+                    case 11:
+                        if (leistung > 95) {
+                            punktzahlNeu = 0;
+                        } else if (leistung > 90) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 85) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 80) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 76) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 72) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 69) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 66) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 63) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 61) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 57) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 55) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 51) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
+                        }
+                        break;
+
+                    case 12:
+                        if (leistung > 93) {
+                            punktzahlNeu = 0;
+                        } else if (leistung > 88) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 83) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 78) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 74) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 70) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 67) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 64) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 61) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 57) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 55) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 51) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 49) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
+                        }
+                        break;
+
+                    case 13:
+                    case 14:
                         if (leistung > 89) {
-                            return 0;
+                            punktzahlNeu = 0;
+                        } else if (leistung > 86) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 81) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 76) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 72) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 68) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 65) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 62) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 57) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 55) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 51) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 49) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 47) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
+                        }
+                        break;
+                    case 15:
+                        if (leistung > 80) {
+                            punktzahlNeu = 0;
+                        } else if (leistung > 75) {
+                            punktzahlNeu = 1;
+                        } else if (leistung > 70) {
+                            punktzahlNeu = 2;
+                        } else if (leistung > 66) {
+                            punktzahlNeu = 3;
+                        } else if (leistung > 62) {
+                            punktzahlNeu = 4;
+                        } else if (leistung > 59) {
+                            punktzahlNeu = 5;
+                        } else if (leistung > 56) {
+                            punktzahlNeu = 6;
+                        } else if (leistung > 53) {
+                            punktzahlNeu = 7;
+                        } else if (leistung > 51) {
+                            punktzahlNeu = 8;
+                        } else if (leistung > 49) {
+                            punktzahlNeu = 9;
+                        } else if (leistung > 47) {
+                            punktzahlNeu = 10;
+                        } else if (leistung > 45) {
+                            punktzahlNeu = 11;
+                        } else if (leistung > 44) {
+                            punktzahlNeu = 12;
+                        } else if (leistung > 43) {
+                            punktzahlNeu = 13;
+                        } else if (leistung > 42) {
+                            punktzahlNeu = 14;
+                        } else {
+                            punktzahlNeu = 15;
                         }
                 }
-                if (leistung > 86) {
-                    punktzahl = (-leistung + (89 + 1 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 81) {
-                    punktzahl = (-leistung + (86 + 2 * 5)) / 5;
-                    return punktzahl;
-                } else if (leistung > 76) {
-                    punktzahl = (-leistung + (81 + 3 * 5)) / 5;
-                    return punktzahl;
-                } else if (leistung > 72) {
-                    punktzahl = (-leistung + (76 + 4 * 4)) / 4;
-                    return punktzahl;
-                } else if (leistung > 68) {
-                    punktzahl = (-leistung + (72 + 5 * 4)) / 4;
-                    return punktzahl;
-                } else if (leistung > 65) {
-                    punktzahl = (-leistung + (68 + 6 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 62) {
-                    punktzahl = (-leistung + (65 + 7 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 59) {
-                    punktzahl = (-leistung + (62 + 8 * 3)) / 3;
-                    return punktzahl;
-                } else if (leistung > 57) {
-                    punktzahl = (-leistung + (59 + 9 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 55) {
-                    punktzahl = (-leistung + (57 + 10 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 53) {
-                    punktzahl = (-leistung + (55 + 11 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 51) {
-                    punktzahl = (-leistung + (53 + 12 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 49) {
-                    punktzahl = (-leistung + (51 + 13 * 2)) / 2;
-                    return punktzahl;
-                } else if (leistung > 47) {
-                    punktzahl = (-leistung + (49 + 14 * 2)) / 2;
-                    return punktzahl;
-                } else {
-                    return 15;
 
-                }
-
-            }
         }
-        return punktzahl;
+
+        return punktzahlNeu;
     }
+
 
 }

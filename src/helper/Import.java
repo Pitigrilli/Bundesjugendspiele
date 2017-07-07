@@ -60,13 +60,20 @@ public class Import {
         }
 
         for (Klasse k : bjs.getAlleKlassen()) {
-            
+
             String jahrgang = k.getName().substring(0, 1);
-            
+
         }
+
+        // Sortieren der Listen
         bjs.getAlleKlassen().sort(null);
-        for(Klasse k: bjs.getAlleKlassen()){
+        for (Klasse k : bjs.getAlleKlassen()) {
             k.getSchueler().sort(null);
+        }
+        Klasse k = (bjs.getAlleKlassen()).get(0);
+        
+        for (Schueler s: k.getSchueler()) {
+            System.out.println(s);
         }
         return bjs;
     }

@@ -20,7 +20,10 @@ public abstract class Disziplin implements Serializable {
     protected Schueler schueler;
 
     public Disziplin(Schueler s) {
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
         schueler = s;
+
     }
 
     abstract public int punktzahlberechnen();
@@ -35,6 +38,7 @@ public abstract class Disziplin implements Serializable {
         this.leistungString = leistungString;
         setLeistung(leistungString);
         punktzahl = punktzahlberechnen();
+        System.out.println(schueler.getAlter()+" "+schueler.getGeschlecht()+" "+this.leistungString+" "+punktzahl);
     }
 
     public int getLeistung() {

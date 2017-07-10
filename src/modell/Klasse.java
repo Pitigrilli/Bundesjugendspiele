@@ -2,6 +2,8 @@ package modell;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -49,4 +51,25 @@ public class Klasse implements Serializable, Comparable {
     public String getName(){
         return name;
     }
+    
+    public ArrayList<Schueler> getBestGirls(){
+        ArrayList<Schueler> bestGirls = new ArrayList<>();
+        for(Schueler s: schueler)
+            if(s.getGeschlecht()=='w')
+                bestGirls.add(s);
+        Collections.sort(bestGirls, (a, b) -> a.getGesamtpunktzahl() < b.getGesamtpunktzahl() ? 1 : a.getGesamtpunktzahl() == b.getGesamtpunktzahl() ? 0 : -1);
+        return bestGirls;
+    }
+    
+    public ArrayList<Schueler> getBestBoys(){
+        ArrayList<Schueler> bestBoys = new ArrayList<>();
+        for(Schueler s: schueler)
+            if(s.getGeschlecht()=='m')
+                bestBoys.add(s);
+        Collections.sort(bestBoys, (a, b) -> a.getGesamtpunktzahl() < b.getGesamtpunktzahl() ? 1 : a.getGesamtpunktzahl() == b.getGesamtpunktzahl() ? 0 : -1);
+        return bestBoys;
+    }
 }
+
+
+

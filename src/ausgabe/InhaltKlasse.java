@@ -10,8 +10,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.text.ParseException;
@@ -51,7 +54,7 @@ public class InhaltKlasse extends Inhalt {
         Paragraph title = new Paragraph();
         title.setFont(SMALLBOLD);
 
-        title.add("Bundesjugendspiele "+ yearInString+"\n\n Schwimmen\n\nKlasse " + aktuelleKlasse.getName());
+        title.add("Bundesjugendspiele " + yearInString + "\n\n Schwimmen\n\nKlasse " + aktuelleKlasse.getName());
         title.setAlignment(Element.ALIGN_CENTER);
 
         document.add(title);
@@ -91,6 +94,60 @@ public class InhaltKlasse extends Inhalt {
         }
 
         document.add(tabelle);
+
+        PdfPTable tabelleBeste = new PdfPTable(2);
+        tabelleBeste.setWidthPercentage(100);
+        //tabelleBeste.setWidths(new int[]{6, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1});
+        tabelleBeste.setSpacingBefore(25);
+        
+        PdfPCell cell11 = new PdfPCell(new Phrase("Mädchen:"));
+        cell11.setBorder(Rectangle.NO_BORDER);
+        tabelleBeste.addCell(cell11);
+        PdfPCell cell12 = new PdfPCell(new Phrase("Jungen:"));
+        cell12.setBorder(Rectangle.NO_BORDER);
+        tabelleBeste.addCell(cell12);
+
+        
+        PdfPTable tableGirls = new PdfPTable(3);
+        tableGirls.setWidths(new int[]{1, 6, 1});
+
+        
+        for (int i = 0; i < 5; i++) {
+            Schueler s = aktuelleKlasse.getBestGirls().get(i);
+            PdfPCell cellNr = new PdfPCell(new Phrase((i+1)+".")); 
+            cellNr.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellName = new PdfPCell(new Phrase(s.getName())); 
+            cellName.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellPunkte = new PdfPCell(new Phrase(""+s.getGesamtpunktzahl())); 
+            cellPunkte.setBorder(Rectangle.NO_BORDER);
+            tableGirls.addCell(cellNr);
+            tableGirls.addCell(cellName);
+            tableGirls.addCell(cellPunkte);
+        }
+        tabelleBeste.addCell(tableGirls);
+        
+        PdfPTable tableBoys = new PdfPTable(3);
+        tableBoys.setWidths(new int[]{1, 6, 1});
+
+        
+        for (int i = 0; i < 5; i++) {
+            Schueler s = aktuelleKlasse.getBestBoys().get(i);
+            PdfPCell cellNr = new PdfPCell(new Phrase((i+1)+".")); 
+            cellNr.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellName = new PdfPCell(new Phrase(s.getName())); 
+            cellName.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellPunkte = new PdfPCell(new Phrase(""+s.getGesamtpunktzahl())); 
+            cellPunkte.setBorder(Rectangle.NO_BORDER);
+            tableBoys.addCell(cellNr);
+            tableBoys.addCell(cellName);
+            tableBoys.addCell(cellPunkte);
+        }
+        tabelleBeste.addCell(tableBoys);
+        
+        document.add(tabelleBeste);
+
+
+
     }
 
     private String formatTime(String value) {
@@ -110,6 +167,7 @@ public class InhaltKlasse extends Inhalt {
         return value;
 
     }
+   
 
 }
 

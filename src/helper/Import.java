@@ -105,6 +105,8 @@ public class Import {
             j.getKlassen().sort(null);
         }
         
+        bjs.setAlleSchueler(schuelerliste);
+        
         return bjs;
     }
 

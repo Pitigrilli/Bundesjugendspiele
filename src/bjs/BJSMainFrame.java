@@ -69,8 +69,6 @@ public class BJSMainFrame extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         importjMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
         druckeAlleMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         MenuBericht = new javax.swing.JMenu();
@@ -138,10 +136,10 @@ public class BJSMainFrame extends javax.swing.JFrame {
         fileMenu.setMnemonic('f');
         fileMenu.setText("Datei");
         fileMenu.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 fileMenuInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -161,14 +159,6 @@ public class BJSMainFrame extends javax.swing.JFrame {
             }
         });
         fileMenu.add(importjMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Speichern");
-        fileMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Speichern unter");
-        fileMenu.add(saveAsMenuItem);
 
         druckeAlleMenuItem.setText("Drucke alle Klassen");
         druckeAlleMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -409,7 +399,7 @@ public class BJSMainFrame extends javax.swing.JFrame {
         pdf.setInhalt(new InhaltAltersstufe(bjs));
         File pdfFile = pdf.drucken();
 
-        //zeigePdf(pdfFile);
+        zeigePdf(pdfFile);
     }//GEN-LAST:event_ItemAltersstufenActionPerformed
 
     private void contentsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentsMenuItemActionPerformed
@@ -509,8 +499,6 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
     private void zeigePdf(File pdfFile) {

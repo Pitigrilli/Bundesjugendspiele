@@ -21,39 +21,42 @@ public class Altersstufe {
         return geburtsjahre;
     }
 
-    public void setGeburtsjahre(ArrayList<Integer> geburtsjahre) {
-        this.geburtsjahre = geburtsjahre;
-    }
-
     public Altersstufe(BJS bjs) {
         this.bjs = bjs;
-        boolean existiert = false;
-        geburtsjahre = new ArrayList<Integer>();
+
+        geburtsjahre = new ArrayList<>();
+
         ArrayList<Schueler> schueler = bjs.getAlleSchueler();
 
-        for (int g : geburtsjahre) {
-            for (Schueler s : schueler) {
-                if (g == s.getGeburtsjahr()) {
-                    existiert = true;
-                }
-
-                if (!existiert) {
-                    geburtsjahre.add((s.getGeburtsjahr()));
-                }
-
+        for (Schueler s : schueler) {
+            if (!containsGeburtsjahr(s.getGeburtsjahr())) {
+                geburtsjahre.add(new Integer(s.getGeburtsjahr()));
             }
         }
+        geburtsjahre.sort(null);
     }
 
     public ArrayList<Schueler> sortByAge(int geburtsjahr, char geschlecht) {
+        System.out.println("Geburtsjahr "+geburtsjahr+" Geschlecht: "+geschlecht);
         ArrayList<Schueler> altersliste = new ArrayList<>();
         ArrayList<Schueler> schueler = bjs.getAlleSchueler();
         for (Schueler s : schueler) {
-            if (s.getGeburtsjahr() == geburtsjahr && s.getGeschlecht() == geschlecht) {
+            if ((s.getGeburtsjahr() == geburtsjahr) && (s.getGeschlecht() == geschlecht)) {
                 altersliste.add(s);
             }
         }
-        Collections.sort(altersliste, (a, b) -> a.getGesamtpunktzahl() < b.getGesamtpunktzahl() ? 1 : a.getGesamtpunktzahl() == b.getGesamtpunktzahl() ? 0 : -1);
+        Collections.sort(altersliste, (a, b) -> a.getGesamtpunktzahl() < b.getGesamtpunktzahl() ? +1 : a.getGesamtpunktzahl() == b.getGesamtpunktzahl() ? 0 : -1);
+        System.out.println("Anzahl Schüler: "+altersliste.size());
         return altersliste;
+    }
+
+    public boolean containsGeburtsjahr(int year) {
+        boolean contains = false;
+        for (int i = 0; i < geburtsjahre.size(); i++) {
+            if (geburtsjahre.get(i) == year) {
+                contains = true;
+            }
+        }
+        return contains;
     }
 }

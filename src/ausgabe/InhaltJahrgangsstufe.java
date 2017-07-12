@@ -15,6 +15,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.util.ArrayList;
 import modell.BJS;
 import modell.Schueler;
 
@@ -39,6 +40,8 @@ public class InhaltJahrgangsstufe extends Inhalt {
     @Override
     void addContent(Document document) throws DocumentException {
         for(int j=0; j<bjs.getJahrgangliste().size();j++){
+        ArrayList<Schueler> bestGirls =    bjs.getJahrgangliste().get(j).getBestGirls();
+        ArrayList<Schueler> bestBoys =    bjs.getJahrgangliste().get(j).getBestBoys();
         Paragraph title = new Paragraph();
         title.setFont(SMALLBOLD);
         
@@ -54,46 +57,52 @@ public class InhaltJahrgangsstufe extends Inhalt {
         //tabelleBeste.setWidths(new int[]{6, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1});
         tabelleBeste.setSpacingBefore(25);
         
-        PdfPCell cell11 = new PdfPCell(new Phrase("Mädchen:"));
+        PdfPCell cell11 = new PdfPCell(new Phrase("Mädchen: "+bestGirls.size()));
         cell11.setBorder(Rectangle.NO_BORDER);
         tabelleBeste.addCell(cell11);
-        PdfPCell cell12 = new PdfPCell(new Phrase("Jungen:"));
+        PdfPCell cell12 = new PdfPCell(new Phrase("Jungen: "+bestBoys.size()));
         cell12.setBorder(Rectangle.NO_BORDER);
         tabelleBeste.addCell(cell12);
 
         
-        PdfPTable tableGirls = new PdfPTable(3);
-        tableGirls.setWidths(new int[]{1, 6, 1});
+        PdfPTable tableGirls = new PdfPTable(4);
+        tableGirls.setWidths(new int[]{1, 6,1, 1});
 
         
-        for (int i = 0; i < 5; i++) {
-            Schueler s = bjs.getJahrgangliste().get(j).getBestGirls().get(i);
+        for (int i = 0; i < 10; i++) {
+            Schueler s = bestGirls.get(i);
             PdfPCell cellNr = new PdfPCell(new Phrase((i+1)+".")); 
             cellNr.setBorder(Rectangle.NO_BORDER);
             PdfPCell cellName = new PdfPCell(new Phrase(s.getName())); 
             cellName.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellKlasse = new PdfPCell(new Phrase(s.getKlasse())); 
+            cellKlasse.setBorder(Rectangle.NO_BORDER);
             PdfPCell cellPunkte = new PdfPCell(new Phrase(""+s.getGesamtpunktzahl())); 
             cellPunkte.setBorder(Rectangle.NO_BORDER);
             tableGirls.addCell(cellNr);
             tableGirls.addCell(cellName);
+            tableGirls.addCell(cellKlasse);
             tableGirls.addCell(cellPunkte);
         }
         tabelleBeste.addCell(tableGirls);
         
-        PdfPTable tableBoys = new PdfPTable(3);
-        tableBoys.setWidths(new int[]{1, 6, 1});
+        PdfPTable tableBoys = new PdfPTable(4);
+        tableBoys.setWidths(new int[]{1, 6,1, 1});
 
         
-        for (int i = 0; i < 5; i++) {
-            Schueler s = bjs.getJahrgangliste().get(j).getBestBoys().get(i);
+        for (int i = 0; i < 10; i++) {
+            Schueler s = bestBoys.get(i);
             PdfPCell cellNr = new PdfPCell(new Phrase((i+1)+".")); 
             cellNr.setBorder(Rectangle.NO_BORDER);
             PdfPCell cellName = new PdfPCell(new Phrase(s.getName())); 
             cellName.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cellKlasse = new PdfPCell(new Phrase(s.getKlasse())); 
+            cellKlasse.setBorder(Rectangle.NO_BORDER);
             PdfPCell cellPunkte = new PdfPCell(new Phrase(""+s.getGesamtpunktzahl())); 
             cellPunkte.setBorder(Rectangle.NO_BORDER);
             tableBoys.addCell(cellNr);
             tableBoys.addCell(cellName);
+            tableBoys.addCell(cellKlasse);
             tableBoys.addCell(cellPunkte);
         }
         tabelleBeste.addCell(tableBoys);

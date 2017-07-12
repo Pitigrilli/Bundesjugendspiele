@@ -7,8 +7,10 @@ package helper;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.Collections;
 import javax.swing.JFileChooser;
 import modell.BJS;
+import modell.Jahrgang;
 import modell.Klasse;
 import modell.Schueler;
 
@@ -60,10 +62,31 @@ public class Import {
         }
 
         for (Klasse k : bjs.getAlleKlassen()) {
+            
+            boolean existiert = false;
 
-            String jahrgang = k.getName().substring(0, 1);
-
+            int jahrgang = Integer.parseInt(k.getName().substring(1, 2));
+            
+            
+            for(modell.Jahrgang j : bjs.getJahrgangliste()){
+                if(j.getName() == jahrgang){
+                    existiert = true;
+                }
+            }
+            
+            if(!existiert){
+                bjs.getJahrgangliste().add(new modell.Jahrgang(jahrgang));
+            }
+            
+            for(modell.Jahrgang j : bjs.getJahrgangliste()){
+                if(j.getName()==jahrgang){
+                    j.klasseHinzufügen(k);
+                }
+            }
+            
         }
+
+        
 
         // Sortieren der Listen
         bjs.getAlleKlassen().sort(null);
@@ -75,6 +98,13 @@ public class Import {
         for (Schueler s: k.getSchueler()) {
             System.out.println(s);
         }
+        bjs.getJahrgangliste().sort(null);
+        
+        ArrayList<Jahrgang> jgs = bjs.getJahrgangliste();
+        for(Jahrgang j: jgs){
+            j.getKlassen().sort(null);
+        }
+        
         return bjs;
     }
 

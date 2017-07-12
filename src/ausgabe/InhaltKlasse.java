@@ -10,8 +10,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
@@ -64,7 +62,7 @@ public class InhaltKlasse extends Inhalt {
         tabelle.setWidths(new int[]{6, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1});
         tabelle.setSpacingBefore(25);
 
-        /////// KopfSchreiben
+        ///// KopfSchreiben
         PdfPCell nameSchueler = new PdfPCell(new Phrase("Name"));
         nameSchueler.setBackgroundColor(BaseColor.LIGHT_GRAY);
         tabelle.addCell(nameSchueler);
@@ -145,8 +143,6 @@ public class InhaltKlasse extends Inhalt {
         tabelleBeste.addCell(tableBoys);
         
         document.add(tabelleBeste);
-
-
 
     }
 

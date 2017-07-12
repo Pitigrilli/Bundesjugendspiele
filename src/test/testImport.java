@@ -16,14 +16,19 @@ import java.io.File;
 public class testImport {
 
     public static void main(String[] args) {
+            
             helper.Import test = new helper.Import();
-            ArrayList<modell.Schueler> schuelerliste = test.gibListe();
-            for (modell.Schueler schueler : schuelerliste) {
-            System.out.println(schueler.toString());
-
+            modell.BJS bjs = test.gibBJS();
+            
+            for(modell.Jahrgang j : bjs.getJahrgangliste()){
+                System.out.println(j.getName() + ":");
+                for(modell.Klasse k : j.getKlassen()){
+                    System.out.println(k.getName());
+                }
+            }
             }
 
         
 
     }
-}
+

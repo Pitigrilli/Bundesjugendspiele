@@ -62,8 +62,6 @@ public class Schueler implements Serializable, Comparable {
         return geburtsjahr;
     }
     
-    
-
     public int getAlter() {
         int aktuellesJahr = (new GregorianCalendar().get(Calendar.YEAR));
         return aktuellesJahr - geburtsjahr;

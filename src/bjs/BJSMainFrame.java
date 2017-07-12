@@ -6,6 +6,8 @@
 package bjs;
 
 import ausgabe.InhaltAlleKlassen;
+import ausgabe.InhaltAltersstufe;
+import ausgabe.InhaltJahrgangsstufe;
 import ausgabe.InhaltKlasse;
 import ausgabe.PrintPDF;
 import helper.Import;
@@ -56,6 +58,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jOptionPane1 = new javax.swing.JOptionPane();
         KlasseJComboBox = new javax.swing.JComboBox<>();
         jButtonDrucken = new javax.swing.JButton();
         jButtonSpeichern = new javax.swing.JButton();
@@ -69,6 +73,9 @@ public class BJSMainFrame extends javax.swing.JFrame {
         saveAsMenuItem = new javax.swing.JMenuItem();
         druckeAlleMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
+        MenuBericht = new javax.swing.JMenu();
+        ItemJahrgang = new javax.swing.JMenuItem();
+        ItemAltersstufen = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
@@ -77,6 +84,17 @@ public class BJSMainFrame extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bundesjugendspiele v0.1");
@@ -120,10 +138,10 @@ public class BJSMainFrame extends javax.swing.JFrame {
         fileMenu.setMnemonic('f');
         fileMenu.setText("Datei");
         fileMenu.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 fileMenuInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -171,6 +189,31 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
+        MenuBericht.setText("Bericht");
+        MenuBericht.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBerichtActionPerformed(evt);
+            }
+        });
+
+        ItemJahrgang.setText("Jahrgang");
+        ItemJahrgang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemJahrgangActionPerformed(evt);
+            }
+        });
+        MenuBericht.add(ItemJahrgang);
+
+        ItemAltersstufen.setText("Altersstufen");
+        ItemAltersstufen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemAltersstufenActionPerformed(evt);
+            }
+        });
+        MenuBericht.add(ItemAltersstufen);
+
+        menuBar.add(MenuBericht);
+
         editMenu.setMnemonic('e');
 
         cutMenuItem.setMnemonic('t');
@@ -193,9 +236,19 @@ public class BJSMainFrame extends javax.swing.JFrame {
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Hilfe");
+        helpMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpMenuActionPerformed(evt);
+            }
+        });
 
         contentsMenuItem.setMnemonic('c');
         contentsMenuItem.setText("Inhalt");
+        contentsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentsMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(contentsMenuItem);
 
         aboutMenuItem.setMnemonic('a');
@@ -243,8 +296,11 @@ public class BJSMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        // TODO add your handling code here:
-        System.out.println("About angeklickt");
+      jOptionPane1 = new javax.swing.JOptionPane();
+      
+      jOptionPane1.showMessageDialog(null,"BundesJugendSpiele Schwimmen Version 1.0 \n \n Fehler sind zurück zu führen auf: \n Nils Holler \n Stefan Finckh \n Max Morchutt \n Daniel Rawski \n Philipp Kamolz \n Clair Weir \n Loris Jelinek \n Jonas Zehe \n \n Mitwirkender IT-Experte: \n Claus Behl");
+// TODO add your handling code here:
+        
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void KlasseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KlasseJComboBoxActionPerformed
@@ -325,6 +381,44 @@ public class BJSMainFrame extends javax.swing.JFrame {
         zeigePdf(pdfFile);
     }//GEN-LAST:event_druckeAlleMenuItemActionPerformed
 
+    private void MenuBerichtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBerichtActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_MenuBerichtActionPerformed
+
+    private void ItemJahrgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemJahrgangActionPerformed
+        // TODO add your handling code here:
+        String nameFile = "BerichtJahrgang.pdf";
+
+        PrintPDF pdf = new PrintPDF(nameFile);
+        pdf.setInhalt(new InhaltJahrgangsstufe(bjs));
+        File pdfFile = pdf.drucken();
+
+        zeigePdf(pdfFile);
+    }//GEN-LAST:event_ItemJahrgangActionPerformed
+
+    private void helpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuActionPerformed
+ 
+    }//GEN-LAST:event_helpMenuActionPerformed
+
+    private void ItemAltersstufenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemAltersstufenActionPerformed
+        // TODO add your handling code here:
+        String nameFile = "BerichtAltersstufen.pdf";
+
+        PrintPDF pdf = new PrintPDF(nameFile);
+        pdf.setInhalt(new InhaltAltersstufe(bjs));
+        File pdfFile = pdf.drucken();
+
+        //zeigePdf(pdfFile);
+    }//GEN-LAST:event_ItemAltersstufenActionPerformed
+
+    private void contentsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentsMenuItemActionPerformed
+        // TODO add your handling code here:
+         File pdfFile = new File("Hilfe.pdf");
+
+        zeigePdf(pdfFile);
+    }//GEN-LAST:event_contentsMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,7 +485,10 @@ public class BJSMainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemAltersstufen;
+    private javax.swing.JMenuItem ItemJahrgang;
     private javax.swing.JComboBox<String> KlasseJComboBox;
+    private javax.swing.JMenu MenuBericht;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
@@ -405,6 +502,8 @@ public class BJSMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem importjMenuItem;
     private javax.swing.JButton jButtonDrucken;
     private javax.swing.JButton jButtonSpeichern;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;
